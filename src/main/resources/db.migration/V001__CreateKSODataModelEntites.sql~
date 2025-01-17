@@ -1,0 +1,16 @@
+create table if not exists agreement
+(
+    id                      bigserial primary key,
+    number                  varchar(1000) not null,
+    state                   varchar(1000) not null,
+    creation_ts             timestamp with time zone not null,
+    open_date               date not null,
+    close_date              date,
+    head_org_id             bigint not null,
+    currency_id             bigint not null,
+    period_months_count     integer not null,
+    nso_accounting_type     varchar(1000) not null,
+    interest_rate_type      varchar(1000) not null,
+    accrual_purpose         varchar(1000) not null,
+    payment_purpose         varchar(1000) not null
+);

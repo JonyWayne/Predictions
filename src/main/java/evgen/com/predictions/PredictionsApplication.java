@@ -9,8 +9,6 @@ import java.util.Arrays;
 public class PredictionsApplication {
 
 	public static void main(String[] args) {
-//		SpringApplication.run(PredictionsApplication.class, args);
-		System.out.println("Жотём");
+		SpringApplication.run(PredictionsApplication.class, args);
 	}
-
 }
