@@ -52,7 +52,7 @@ INSERT INTO predictions_db.cards_images (image_data, image_name) VALUES
       (LOAD_FILE(CONCAT(@image_path, 'image27.jpg')), 'Шестерка Жезлов'),
       (LOAD_FILE(CONCAT(@image_path, 'image28.jpg')), 'Семерка Жезлов'),
       (LOAD_FILE(CONCAT(@image_path, 'image29.jpg')), 'Восьмерка Жезлов'),
-      (LOAD_FILE(CONCAT(@image_path, 'image30.jpg')), 'Девятка Жезлов'),
+      (GhLOAD_FILE(CONCAT(@image_path, 'image30.jpg')), 'Девятка Жезлов'),
       (LOAD_FILE(CONCAT(@image_path, 'image31.jpg')), 'Десятка Жезлов'),
       (LOAD_FILE(CONCAT(@image_path, 'image32.jpg')), 'Паж Жезлов'),
       (LOAD_FILE(CONCAT(@image_path, 'image33.jpg')), 'Рыцарь Жезлов'),
