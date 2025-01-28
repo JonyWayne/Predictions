@@ -38,13 +38,6 @@ public class DataLoader implements CommandLineRunner {
 
     private void loadGreetings() {
         if (greetingsRepository.count() == 0) {
-//            List<Greetings> greetings = Arrays.asList(
-//                    new Greetings(null, "Добро пожаловать"),
-//                    new Greetings(null, "Привет"),
-//                    new Greetings(null, "Отличного тебе дня"),
-//                    new Greetings(null, "Рады видеть тебя"),
-//                    new Greetings(null, "Хорошего настроения")
-//            );
             List<Greetings> greetings = new ArrayList<>();
             for (String text : GREETINGS_TEXT) {
                 greetings.add(new Greetings(null, text));

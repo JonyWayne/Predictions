@@ -1,5 +1,6 @@
 package evgen.com.predictions.service.implementation;
 
+import dev.langchain4j.model.openai.OpenAiChatModel;
 import evgen.com.predictions.model.dto.ai_api.AiRequestDTO;
 import evgen.com.predictions.model.dto.ai_api.AiResponseDTO;
 import evgen.com.predictions.model.entity.CardImage;
@@ -15,6 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static evgen.com.predictions.constants.ApiAiConstants.ADDITIONAL_TEXT;
 import static evgen.com.predictions.constants.ApiAiConstants.MAIN_QUESTION;
 
 @Service
@@ -24,6 +26,12 @@ public class CardsServiceImpl implements CardsService {
     private CardImageRepository cardImageRepository;
     @Autowired
     private RestTemplate restTemplate;
+    private final OpenAiChatModel model;
+
+    @Autowired
+    public CardsServiceImpl(OpenAiChatModel model) {
+        this.model = model;
+    }
 
     @Value("${ai.api.url}")
     private String AiApiUrl; // URL API ИИ
@@ -36,14 +44,16 @@ public class CardsServiceImpl implements CardsService {
         String cardsNameToString = tripletCards.stream().map(CardImage::getImageName)
                 .collect(Collectors.joining(", "));
         //        Формируем вопрос для запроса у ИИ
-        String aiQuestion = MAIN_QUESTION + cardsNameToString;
+        String aiQuestion = MAIN_QUESTION + cardsNameToString + ADDITIONAL_TEXT;
         // Отправляем запрос к ИИ
-        String aiPrediction = getAIPrediction(aiQuestion);
+//        String aiPrediction = getAIPrediction(aiQuestion);
+        // Отправляем запрос к ИИ
+        String answer = model.generate(aiQuestion);
         System.out.println(aiQuestion);
         // Создаем ответ
         AiResponseDTO response = new AiResponseDTO();
         response.setCards(tripletCards);
-        response.setPrediction(aiPrediction);
+        response.setPrediction(answer);
 
         return response;
     }
