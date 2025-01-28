@@ -18,7 +18,7 @@ public class CardImage {
     private Long id;
 
     @Lob
-    @Column(name = "image_data", nullable = false)
+    @Column(name = "image_data", nullable = false, columnDefinition = "longblob")
     private byte[] imageData;
 
     @Column(name = "upload_time", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
